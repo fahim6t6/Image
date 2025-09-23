@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fahim – Portfolio</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+/* Body & animated background */
+body { 
+  font-family: Arial, sans-serif; 
+  background: #111111; /* light black background */
+  color: #f2f2f2; 
+  overflow-x:hidden; 
+  scroll-behavior: smooth; 
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top:0; left:0; width:100%; height:100%;
+  background: radial-gradient(#333333 1px, transparent 1px); /* brighter dots */
+  background-size: 30px 30px;
+  z-index: -2;
+  animation: moveBg 60s linear infinite;
+}
+
+@keyframes moveBg { 
+  0% { background-position:0 0; } 
+  100% { background-position:1000px 1000px; } 
+}
+
+/* Header / Hero */
+header {
+  display:flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding:50px 80px;
+  min-height:100vh;
+  flex-wrap: nowrap;
+}
+
+.hero-text {
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  max-width: 60%;
+  animation: fadeInLeft 1s ease forwards;
+  opacity:0;
+}
+
+.hero-text h1 {
+  font-size:3.5rem;
+  display:inline-flex;
+  align-items:flex-end;
+}
+
+.orange-dot {
+  width:8px;
+  height:8px;
+  background:#ff6600;
+  border-radius:50%;
+  display:inline-block;
+  margin-left:5px;
+  margin-bottom:12px;
+  animation:pulse 1.5s infinite;
+}
+
+.hero-text h2 {
+  font-size:4rem;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.orange-line {
+  flex-shrink:0;
+  display:block;
+  height:4px;
+  width:90px;
+  background:#ff6600;
+  border-radius:5px;
+}
+
+.hero-text h3 {
+  font-size:5rem;
+  color:#ccc;
+  position: relative;
+}
+
+/* Buttons container */
+.button-row {
+  display: flex;
+  gap:2cm; /* 2 cm spacing */
+  margin-top:30px;
+  align-items:center;
+  justify-content:flex-start;
+}
+
+.button-row button {
+  padding:15px 50px;  /* same size for both */
+  border-radius:50px; /* capsule shape */
+  border:2px solid #ff6600;
+  background: transparent;
+  color:#ff6600;
+  font-size:1.5rem;
+  cursor:pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  flex:1; /* equal width */
+  text-align:center;
+  max-width: 200px; /* optional fixed max size */
+}
+
+.button-row button:hover {
+  background:#ff6600;
+  color:#111111;
+}
+
+.button-row button:active {
+  animation: blinkOrange 0.5s;
+}
+
+@keyframes blinkOrange {
+  0%, 100% { background: #ff6600; color:#111111; }
+  50% { background: transparent; color:#ff6600; }
+}
+
+/* Dropdown for CV button */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top:120%;
+  left:0;
+  background: #222222;
+  border: 1px solid #ff6600;
+  border-radius:8px;
+  min-width:150px;
+  z-index: 10;
+  flex-direction: column;
+}
+
+.dropdown-content a {
+  padding:10px 15px;
+  color:#ff6600;
+  text-decoration:none;
+  display:block;
+  transition: 0.3s;
+}
+
+.dropdown-content a:hover {
+  background:#ff6600;
+  color:#111111;
+}
+
+.dropdown.show .dropdown-content {
+  display:flex;
+  flex-direction: column;
+}
+
+/* Orange divider line */
+.orange-divider {
+  width: 43.5cm; /* adjust width after shifting */
+  height: 5px;
+  background: #ff6600;
+  border-radius: 5px;
+  margin-top: 40px;
+  margin-left:-1.4cm; /* move 10 cm right */
+}
+
+/* Profile */
+.profile-pic {
+  width:300px;
+  height:300px;
+  border-radius:50%;
+  border:5px solid #ff6600;
+  overflow:hidden;
+  animation: fadeInRight 1s ease forwards;
+  opacity:0;
+  position: relative;
+  margin-top:2cm; /* move profile lower 2 cm */
+}
+
+.profile-pic img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* Animations */
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
+@keyframes fadeInLeft { 0% { opacity:0; transform: translateX(-50px); } 100% { opacity:1; transform: translateX(0); } }
+@keyframes fadeInRight { 0% { opacity:0; transform: translateX(50px); } 100% { opacity:1; transform: translateX(0); } }
+
+/* Responsive */
+@media (max-width:1200px) {
+  header { flex-direction: row; justify-content: space-around; padding:50px 40px; }
+  .hero-text { max-width:55%; }
+  .hero-text h1 { font-size:2.5rem; }
+  .hero-text h2 { font-size:2.5rem; }
+  .hero-text h3 { font-size:4rem; }
+  .profile-pic { width:250px; height:250px; margin-top:2cm; }
+  .button-row { gap:1.5cm; }
+  .button-row button { font-size:1.3rem; padding:12px 35px; max-width:180px; }
+}
+
+@media (max-width:768px) {
+  header { flex-direction:column; gap:30px; padding:50px 20px; }
+  .hero-text { max-width:100%; text-align:center; align-items:center; }
+  .hero-text h1 { font-size:2rem; }
+  .hero-text h2 { font-size:2rem; }
+  .hero-text h3 { font-size:3rem; }
+  .profile-pic { width:150px; height:150px; margin-top:2cm; }
+  .button-row { flex-direction:column; gap:20px; align-items:center; }
+  .button-row button { font-size:1.3rem; padding:12px 35px; max-width:180px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hero-text">
+    <h1>Hello<span class="orange-dot"></span></h1>
+    <h2><span class="orange-line"></span> I'm Fahim</h2>
+    <h3>Game Developer</h3>
+
+    <!-- Buttons row -->
+    <div class="button-row">
+      <button onclick="window.location.href='projects.html'">Project</button>
+
+      <div class="dropdown">
+        <button onclick="toggleDropdown()">CV</button>
+        <div class="dropdown-content">
+          <a href="https://github.com/fahim6t6/Fahim/blob/main/Fahim%20(resume).pdf" target="_blank">View</a>
+          <a href="https://github.com/fahim6t6/Fahim/blob/main/Fahim%20(resume).pdf?raw=true" download>Download</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Orange line -->
+    <div class="orange-divider"></div>
+
+  </div>
+
+  <div class="profile-pic">
+    <img src="https://raw.githubusercontent.com/fahim6t6/Fahim/main/IMG_7607.jpg" alt="Fahim Profile">
+  </div>
+</header>
+
+<script>
+// Toggle CV dropdown
+function toggleDropdown() {
+  document.querySelector('.dropdown').classList.toggle('show');
+}
+
+// Close dropdown when clicking outside
+window.onclick = function(e) {
+  if (!e.target.matches('.dropdown button')) {
+    document.querySelector('.dropdown').classList.remove('show');
+  }
+}
+</script>
+
+</body>
+</html>
